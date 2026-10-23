@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-23T22:22:37+00:00",
+  "generatedAt": "2026-10-23T22:23:36+00:00",
   "title": "Design System: dkb-dash",
   "extensions": {
     "colorMeta": {
@@ -278,15 +278,35 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Closing balance in the statement bracket; one per screen. 2rem, 2.25rem at sm, 3rem at lg."
+        "purpose": "Closing balance in the statement bracket; one per screen. Mobile base 2rem; steps up via display-sm and display-lg."
+      },
+      "display-sm": {
+        "displayName": "Display (sm step)",
+        "purpose": "Closing balance at 640px and up."
+      },
+      "display-lg": {
+        "displayName": "Display (lg step)",
+        "purpose": "Closing balance at 1024px and up."
       },
       "figure": {
         "displayName": "Figure",
-        "purpose": "Opening balance, money in, money out in the statement bracket. 1.75rem, 2rem at sm, 2.5rem at lg."
+        "purpose": "Opening balance, money in, money out in the statement bracket. Mobile base 1.75rem; steps up via figure-sm and figure-lg."
+      },
+      "figure-sm": {
+        "displayName": "Figure (sm step)",
+        "purpose": "Bracket figures at 640px and up."
+      },
+      "figure-lg": {
+        "displayName": "Figure (lg step)",
+        "purpose": "Bracket figures at 1024px and up."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Page h1: month name, Import CSV, Review import. 1.75rem, 2rem at sm."
+        "purpose": "Page h1: month name, Import CSV, Review import. Mobile base 1.75rem; steps up via headline-sm."
+      },
+      "headline-sm": {
+        "displayName": "Headline (sm step)",
+        "purpose": "Page h1 at 640px and up."
       },
       "title": {
         "displayName": "Title",

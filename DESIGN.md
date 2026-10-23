@@ -23,17 +23,47 @@ colors:
 typography:
   display:
     fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2rem"
+    fontWeight: 600
+    lineHeight: 1.25
+    fontFeature: "tnum, lnum"
+  display-sm:
+    fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2.25rem"
+    fontWeight: 600
+    lineHeight: 1.25
+    fontFeature: "tnum, lnum"
+  display-lg:
+    fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "3rem"
     fontWeight: 600
     lineHeight: 1.25
     fontFeature: "tnum, lnum"
   figure:
     fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.75rem"
+    fontWeight: 500
+    lineHeight: 1.25
+    fontFeature: "tnum, lnum"
+  figure-sm:
+    fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2rem"
+    fontWeight: 500
+    lineHeight: 1.25
+    fontFeature: "tnum, lnum"
+  figure-lg:
+    fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "2.5rem"
     fontWeight: 500
     lineHeight: 1.25
     fontFeature: "tnum, lnum"
   headline:
+    fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.75rem"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.025em"
+  headline-sm:
     fontFamily: "'Fira Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "2rem"
     fontWeight: 600
@@ -174,6 +204,8 @@ A near-monochrome blue-grey paper palette with one deep statement blue and red i
 **Character:** Spiekermann's workhorse sans in 400/500/600 only, self-hosted via Fontsource. Every table and every figure block sets `tabular-nums lining-nums`, so columns of euros align like a printout.
 
 ### Hierarchy
+Display, figure, and headline step up mobile-first: the base token is the mobile size, and the `-sm` (640px) and `-lg` (1024px) sibling tokens are the same role at wider breakpoints, not separate roles.
+
 - **Display** (600, 2rem → 2.25rem → 3rem at lg, 1.25): the closing balance in the statement bracket. One per screen.
 - **Figure** (500, 1.75rem → 2rem → 2.5rem at lg, 1.25): opening balance, money in, money out in the bracket.
 - **Headline** (600, 1.75rem → 2rem at sm, 1.25, -0.025em): page h1 (month name, Import CSV, Review import). Empty and error states drop to 1.5rem.
