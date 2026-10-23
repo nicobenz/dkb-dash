@@ -21,7 +21,7 @@ User downloads CSV exports from DKB online banking and imports them into the app
 ## Capabilities and Constraints
 - Input: DKB CSV import (live bank sync / FinTS / PSD2 is not planned; may be revisited).
 - Stack in place: SvelteKit, Svelte, Tailwind (typography, forms), Drizzle + PostgreSQL (postgres.js), Paraglide i18n (en, de), Vitest, Playwright.
-- UI must be fully localized in English and German; use German banking terms and number/date formats where appropriate (EUR, dd.mm.yyyy).
+- UI is English-only during early development to keep iteration and testing simple; German localization via Paraglide comes later, at which point the UI must be fully localized in both (German banking terms and formats where appropriate: EUR, dd.mm.yyyy).
 - Categorization: users define categories and assign strings found in CSV fields (e.g. payee, purpose text) to them, so matching transactions fall into the category automatically.
 - Insights: filtering, trends over time, spending breakdowns by category.
 - Everything local and OSS: no cloud services, no telemetry, no external calls at runtime (fonts, analytics, CDNs included); all dependencies open source.
@@ -36,7 +36,7 @@ No real data, sample CSVs, brand assets, or copy exist yet. Do not fabricate acc
 - User-owned categorization: rules are transparent and editable by the user, never opaque magic.
 - Trustworthy numbers: exact, reconcilable with the bank statement; never approximate silently.
 - Import is the front door: making CSV import painless and repeatable matters most.
-- Bilingual by default: English and German are equal citizens.
+- Bilingual in the long run: English first while the product takes shape; German joins as an equal citizen once the UI settles.
 - Calm and legible: a tool for regular check-ins, not engagement.
 
 ## Accessibility & Inclusion

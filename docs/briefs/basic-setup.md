@@ -19,7 +19,7 @@ Status: proposed, awaiting confirmation. Planning only; no code written yet.
 - **Type:** a self-hosted workhorse grotesk with tabular figures for all UI and amounts; a monospace face only where the content really is code-like (IBAN, references). No terminal costume.
 - **Palette:** a cool printout-grey ground (explicitly not cream), blue-black ink for text and figures, a committed statement-blue for the shell band and selection, outgoing amounts in a statement red ink, incoming in ink. Status colours (error, warning) are reserved for real states and always carry an icon too.
 - **Density:** statement-dense rows, generous gutters between blocks.
-- **Signature move (focal moment):** the month as a statement bracket. The dashboard opens on one equation row: **Alter Kontostand + Eingänge − Ausgänge = Neuer Kontostand**. When the closing balance matches the bank's balance from the latest import, it shows a reconciled mark (`abgestimmt` / `reconciled`). On a mismatch it states the exact difference, with no silent correction.
+- **Signature move (focal moment):** the month as a statement bracket. The dashboard opens on one equation row: **Opening balance + Money in − Money out = Closing balance**. When the closing balance matches the bank's balance from the latest import, it shows a `reconciled` mark. On a mismatch it states the exact difference, with no silent correction.
 - **Build path:** code-led (Operate surface). The direction contract and DESIGN.md come at build time, not in this brief.
 - **Honest risk:** a familiar register that drifts toward monospace or terminal. The guard is the grotesk/tabular type rule above.
 - Roll note: the direction roll ran degraded (roll service blocked by network policy), with no catalog challengers. The roll assigned "Two inks (Überweisungsträger)"; the user picked the Statement direction instead.
@@ -36,7 +36,7 @@ In scope:
   - Migrations via drizzle-kit (generate + migrate, not `push`, for self-hosters).
 - **Dashboard** (`/`): month switcher, statement bracket, balance-over-time chart, transactions for the selected month.
 - A plain transactions page with month filter and text search is in scope only if it costs little beyond the dashboard table. Otherwise it waits.
-- App shell: top bar with product name, Dashboard and Import, and the en/de language switch.
+- App shell: top bar with product name, Dashboard and Import. No language switch yet.
 
 Out of scope (anti-goals):
 
@@ -85,9 +85,9 @@ Balance timeline:
 
 Localization and accessibility:
 
-- Paraglide en/de for every string, including errors.
-- Numbers and currency via `Intl` in the active locale (EUR in both).
-- Dates as dd.mm.yyyy in German; en-GB style in English (proposed).
+- **English-only UI for now.** Early-stage churn is easier to build and test in one language; German comes later via Paraglide. Strings stay inline in components until then (no message keys to maintain during churn), and the scaffold's Paraglide setup stays in place, unused, until German is added.
+- The CSV's German values (`Gebucht`, `Vorgemerkt`, `Eingang`, `Ausgang`) are stored as the bank wrote them and mapped to English labels in the UI.
+- Numbers and currency via `Intl` with `en-GB` (EUR); dates in en-GB style, e.g. 23 Oct 2026 (proposed).
 - WCAG AA: the amount sign is never conveyed by colour alone (always `−`/`+`); the chart has a table or text equivalent.
 
 Open decisions (defaults proposed; the builder must not invent others):
