@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T22:22:37+00:00",
+  "title": "Design System: dkb-dash",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Printout Grey",
+        "canonical": "oklch(0.955 0.007 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.007 250)",
+          "oklch(0.26 0.007 250)",
+          "oklch(0.37 0.007 250)",
+          "oklch(0.48 0.007 250)",
+          "oklch(0.60 0.007 250)",
+          "oklch(0.72 0.007 250)",
+          "oklch(0.84 0.007 250)",
+          "oklch(0.95 0.007 250)"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Statement White",
+        "canonical": "oklch(0.995 0.002 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.002 250)",
+          "oklch(0.26 0.002 250)",
+          "oklch(0.37 0.002 250)",
+          "oklch(0.48 0.002 250)",
+          "oklch(0.60 0.002 250)",
+          "oklch(0.72 0.002 250)",
+          "oklch(0.84 0.002 250)",
+          "oklch(0.95 0.002 250)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Blue-Black Ink",
+        "canonical": "oklch(0.25 0.035 262)",
+        "tonalRamp": [
+          "oklch(0.15 0.035 262)",
+          "oklch(0.26 0.035 262)",
+          "oklch(0.37 0.035 262)",
+          "oklch(0.48 0.035 262)",
+          "oklch(0.60 0.035 262)",
+          "oklch(0.72 0.035 262)",
+          "oklch(0.84 0.035 262)",
+          "oklch(0.95 0.035 262)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(0.47 0.03 262)",
+        "tonalRamp": [
+          "oklch(0.15 0.03 262)",
+          "oklch(0.26 0.03 262)",
+          "oklch(0.37 0.03 262)",
+          "oklch(0.48 0.03 262)",
+          "oklch(0.60 0.03 262)",
+          "oklch(0.72 0.03 262)",
+          "oklch(0.84 0.03 262)",
+          "oklch(0.95 0.03 262)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(0.89 0.01 255)",
+        "tonalRamp": [
+          "oklch(0.15 0.01 255)",
+          "oklch(0.26 0.01 255)",
+          "oklch(0.37 0.01 255)",
+          "oklch(0.48 0.01 255)",
+          "oklch(0.60 0.01 255)",
+          "oklch(0.72 0.01 255)",
+          "oklch(0.84 0.01 255)",
+          "oklch(0.95 0.01 255)"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Ruled Line",
+        "canonical": "oklch(0.76 0.018 258)",
+        "tonalRamp": [
+          "oklch(0.15 0.018 258)",
+          "oklch(0.26 0.018 258)",
+          "oklch(0.37 0.018 258)",
+          "oklch(0.48 0.018 258)",
+          "oklch(0.60 0.018 258)",
+          "oklch(0.72 0.018 258)",
+          "oklch(0.84 0.018 258)",
+          "oklch(0.95 0.018 258)"
+        ]
+      },
+      "band": {
+        "role": "primary",
+        "displayName": "Statement Blue",
+        "canonical": "oklch(0.36 0.1 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.1 260)",
+          "oklch(0.26 0.1 260)",
+          "oklch(0.37 0.1 260)",
+          "oklch(0.48 0.1 260)",
+          "oklch(0.60 0.1 260)",
+          "oklch(0.72 0.1 260)",
+          "oklch(0.84 0.1 260)",
+          "oklch(0.95 0.1 260)"
+        ]
+      },
+      "band-deep": {
+        "role": "primary",
+        "displayName": "Letterhead Navy",
+        "canonical": "oklch(0.3 0.09 261)",
+        "tonalRamp": [
+          "oklch(0.15 0.09 261)",
+          "oklch(0.26 0.09 261)",
+          "oklch(0.37 0.09 261)",
+          "oklch(0.48 0.09 261)",
+          "oklch(0.60 0.09 261)",
+          "oklch(0.72 0.09 261)",
+          "oklch(0.84 0.09 261)",
+          "oklch(0.95 0.09 261)"
+        ]
+      },
+      "band-ink": {
+        "role": "primary",
+        "displayName": "Band Paper",
+        "canonical": "oklch(0.97 0.012 255)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 255)",
+          "oklch(0.26 0.012 255)",
+          "oklch(0.37 0.012 255)",
+          "oklch(0.48 0.012 255)",
+          "oklch(0.60 0.012 255)",
+          "oklch(0.72 0.012 255)",
+          "oklch(0.84 0.012 255)",
+          "oklch(0.95 0.012 255)"
+        ]
+      },
+      "band-soft": {
+        "role": "primary",
+        "displayName": "Band Grey-Blue",
+        "canonical": "oklch(0.83 0.04 258)",
+        "tonalRamp": [
+          "oklch(0.15 0.04 258)",
+          "oklch(0.26 0.04 258)",
+          "oklch(0.37 0.04 258)",
+          "oklch(0.48 0.04 258)",
+          "oklch(0.60 0.04 258)",
+          "oklch(0.72 0.04 258)",
+          "oklch(0.84 0.04 258)",
+          "oklch(0.95 0.04 258)"
+        ]
+      },
+      "select": {
+        "role": "primary",
+        "displayName": "Selection Wash",
+        "canonical": "oklch(0.93 0.035 258)",
+        "tonalRamp": [
+          "oklch(0.15 0.035 258)",
+          "oklch(0.26 0.035 258)",
+          "oklch(0.37 0.035 258)",
+          "oklch(0.48 0.035 258)",
+          "oklch(0.60 0.035 258)",
+          "oklch(0.72 0.035 258)",
+          "oklch(0.84 0.035 258)",
+          "oklch(0.95 0.035 258)"
+        ]
+      },
+      "debit": {
+        "role": "secondary",
+        "displayName": "Debit Red",
+        "canonical": "oklch(0.5 0.17 27)",
+        "tonalRamp": [
+          "oklch(0.15 0.17 27)",
+          "oklch(0.26 0.17 27)",
+          "oklch(0.37 0.17 27)",
+          "oklch(0.48 0.17 27)",
+          "oklch(0.60 0.17 27)",
+          "oklch(0.72 0.17 27)",
+          "oklch(0.84 0.17 27)",
+          "oklch(0.95 0.17 27)"
+        ]
+      },
+      "warn": {
+        "role": "tertiary",
+        "displayName": "Mismatch Amber",
+        "canonical": "oklch(0.5 0.12 65)",
+        "tonalRamp": [
+          "oklch(0.15 0.12 65)",
+          "oklch(0.26 0.12 65)",
+          "oklch(0.37 0.12 65)",
+          "oklch(0.48 0.12 65)",
+          "oklch(0.60 0.12 65)",
+          "oklch(0.72 0.12 65)",
+          "oklch(0.84 0.12 65)",
+          "oklch(0.95 0.12 65)"
+        ]
+      },
+      "warn-tint": {
+        "role": "tertiary",
+        "displayName": "Mismatch Amber Tint",
+        "canonical": "oklch(0.965 0.035 85)",
+        "tonalRamp": [
+          "oklch(0.15 0.035 85)",
+          "oklch(0.26 0.035 85)",
+          "oklch(0.37 0.035 85)",
+          "oklch(0.48 0.035 85)",
+          "oklch(0.60 0.035 85)",
+          "oklch(0.72 0.035 85)",
+          "oklch(0.84 0.035 85)",
+          "oklch(0.95 0.035 85)"
+        ]
+      },
+      "warn-rule": {
+        "role": "tertiary",
+        "displayName": "Mismatch Amber Rule",
+        "canonical": "oklch(0.8 0.1 80)",
+        "tonalRamp": [
+          "oklch(0.15 0.1 80)",
+          "oklch(0.26 0.1 80)",
+          "oklch(0.37 0.1 80)",
+          "oklch(0.48 0.1 80)",
+          "oklch(0.60 0.1 80)",
+          "oklch(0.72 0.1 80)",
+          "oklch(0.84 0.1 80)",
+          "oklch(0.95 0.1 80)"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Error Red",
+        "canonical": "oklch(0.5 0.19 27)",
+        "tonalRamp": [
+          "oklch(0.15 0.19 27)",
+          "oklch(0.26 0.19 27)",
+          "oklch(0.37 0.19 27)",
+          "oklch(0.48 0.19 27)",
+          "oklch(0.60 0.19 27)",
+          "oklch(0.72 0.19 27)",
+          "oklch(0.84 0.19 27)",
+          "oklch(0.95 0.19 27)"
+        ]
+      },
+      "danger-tint": {
+        "role": "tertiary",
+        "displayName": "Error Red Tint",
+        "canonical": "oklch(0.965 0.02 25)",
+        "tonalRamp": [
+          "oklch(0.15 0.02 25)",
+          "oklch(0.26 0.02 25)",
+          "oklch(0.37 0.02 25)",
+          "oklch(0.48 0.02 25)",
+          "oklch(0.60 0.02 25)",
+          "oklch(0.72 0.02 25)",
+          "oklch(0.84 0.02 25)",
+          "oklch(0.95 0.02 25)"
+        ]
+      },
+      "danger-rule": {
+        "role": "tertiary",
+        "displayName": "Error Red Rule",
+        "canonical": "oklch(0.8 0.08 25)",
+        "tonalRamp": [
+          "oklch(0.15 0.08 25)",
+          "oklch(0.26 0.08 25)",
+          "oklch(0.37 0.08 25)",
+          "oklch(0.48 0.08 25)",
+          "oklch(0.60 0.08 25)",
+          "oklch(0.72 0.08 25)",
+          "oklch(0.84 0.08 25)",
+          "oklch(0.95 0.08 25)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Closing balance in the statement bracket; one per screen. 2rem, 2.25rem at sm, 3rem at lg."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Opening balance, money in, money out in the statement bracket. 1.75rem, 2rem at sm, 2.5rem at lg."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page h1: month name, Import CSV, Review import. 1.75rem, 2rem at sm."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sheet headings: Balance, Transactions, Import history, preview."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose, capped at 65ch."
+      },
+      "table": {
+        "displayName": "Table",
+        "purpose": "Transaction and preview rows; counterparty and amount at 500."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, dates, captions, notices; sentence case in Faded Ink."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "IBANs, customer and mandate references, filenames only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sheet-lift",
+        "value": "0 1px 2px oklch(0.3 0.04 260 / 0.06)",
+        "purpose": "Every sheet at rest; the system's only shadow token."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Figure settle on month change (Svelte expoOut)."
+      },
+      {
+        "name": "figure-settle",
+        "value": "fly y 4px, 280ms, ease-out-expo; 0ms under prefers-reduced-motion",
+        "purpose": "The one motion moment: statement figures settling in when the month changes."
+      },
+      {
+        "name": "colour-transition",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Hover colour and border shifts on buttons, nav, rows, drop zone."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single primary action per view: Import CSV, Import N transactions.",
+      "html": "<button class=\"ds-btn-primary\">Import 24 transactions</button>",
+      "css": ".ds-btn-primary { background: var(--color-band); color: var(--color-band-ink); font-family: var(--font-sans); font-weight: 500; font-size: 1rem; padding: 10px 20px; border: 0; border-radius: 3px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-primary:hover { background: var(--color-band-deep); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-band); outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.7; cursor: progress; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Discard and month stepper controls: white sheet fill with a ruled border.",
+      "html": "<button class=\"ds-btn-secondary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg>Sept 2026</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 4px; background: var(--color-sheet); color: var(--color-ink); font-family: var(--font-sans); font-weight: 500; font-size: 0.875rem; padding: 6px 12px 6px 8px; border: 1px solid var(--color-rule-strong); border-radius: 3px; cursor: pointer; transition: border-color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-secondary:hover { border-color: var(--color-ink-soft); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-band); outline-offset: 2px; }"
+    },
+    {
+      "name": "Shell Band Navigation",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Statement-blue top band with product name, Overview / Import nav and the account IBAN in mono.",
+      "html": "<header class=\"ds-band\"><a class=\"ds-band-name\" href=\"#\">dkb-dash</a><nav class=\"ds-band-nav\"><a href=\"#\" aria-current=\"page\">Overview</a><a href=\"#\">Import CSV</a></nav><span class=\"ds-band-acct\"><span class=\"ds-band-kind\">Girokonto</span> DE89 3704 0044 0532 0130 00</span></header>",
+      "css": ".ds-band { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; padding: 12px 24px; background: var(--color-band); color: var(--color-band-ink); font-family: var(--font-sans); } .ds-band-name { color: inherit; text-decoration: none; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.025em; } .ds-band-nav { display: flex; gap: 4px; font-size: 0.95rem; } .ds-band-nav a { padding: 6px 12px; border-radius: 3px; color: var(--color-band-soft); text-decoration: none; transition: color 150ms; } .ds-band-nav a:hover { color: var(--color-band-ink); } .ds-band-nav a[aria-current=page] { background: var(--color-band-deep); color: var(--color-band-ink); } .ds-band-nav a:focus-visible { outline: 2px solid var(--color-band-ink); outline-offset: 2px; } .ds-band-acct { margin-left: auto; font-family: var(--font-mono); font-size: 0.875rem; } .ds-band-kind { font-family: var(--font-sans); color: var(--color-band-soft); margin-right: 8px; }"
+    },
+    {
+      "name": "Sheet",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "The universal container: white, hairline-bordered, 3px corners, one soft lift.",
+      "html": "<section class=\"ds-sheet\"><h2>Balance</h2><p>Daily balance, 1 Nov 2025 to 22 Oct 2026</p></section>",
+      "css": ".ds-sheet { background: var(--color-sheet); color: var(--color-ink); border: 1px solid var(--color-rule); border-radius: 3px; box-shadow: 0 1px 2px oklch(0.3 0.04 260 / 0.06); padding: 20px 24px; font-family: var(--font-sans); } .ds-sheet h2 { margin: 0; font-size: 1rem; font-weight: 600; } .ds-sheet p { margin: 4px 0 0; font-size: 0.875rem; color: var(--color-ink-soft); }"
+    },
+    {
+      "name": "Statement Bracket",
+      "kind": "custom",
+      "refersTo": "sheet",
+      "description": "Signature: opening + in − out = closing, closed by a 2px ink rule, with a reconciliation strip.",
+      "html": "<section class=\"ds-bracket\"><div class=\"ds-bracket-row\"><div><p class=\"ds-l\">Opening balance on 30 Sept 2026</p><p class=\"ds-f\">€18,949.18</p></div><span class=\"ds-op\">+</span><div><p class=\"ds-l\">Money in · 0 transactions</p><p class=\"ds-f\">€0.00</p></div><span class=\"ds-op ds-debit\">−</span><div><p class=\"ds-l\">Money out · 22 transactions</p><p class=\"ds-f ds-debit\">€1,707.62</p></div><span class=\"ds-op\">=</span><div class=\"ds-close\"><p class=\"ds-l\">Closing balance on 22 Oct 2026</p><p class=\"ds-f ds-d\">€17,241.56</p></div></div><p class=\"ds-ok\"><strong>Reconciled.</strong> Matches the bank's balance of €17,241.56 on 22 Oct 2026.</p></section>",
+      "css": ".ds-bracket { background: var(--color-sheet); color: var(--color-ink); border: 1px solid var(--color-rule); border-radius: 3px; box-shadow: 0 1px 2px oklch(0.3 0.04 260 / 0.06); overflow: hidden; font-family: var(--font-sans); font-variant-numeric: tabular-nums lining-nums; } .ds-bracket-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1.3fr; align-items: baseline; gap: 16px 20px; padding: 28px 32px; } .ds-bracket p { margin: 0; } .ds-l { font-size: 0.875rem; color: var(--color-ink-soft); } .ds-f { margin-top: 4px !important; font-size: 2.5rem; line-height: 1.25; font-weight: 500; } .ds-d { font-size: 3rem; font-weight: 600; } .ds-op { font-size: 1.875rem; color: var(--color-ink-soft); align-self: end; padding-bottom: 8px; } .ds-debit { color: var(--color-debit); } .ds-close { border-left: 2px solid var(--color-ink); padding-left: 20px; } .ds-ok { border-top: 1px solid var(--color-rule); background: color-mix(in oklch, var(--color-select) 50%, transparent); padding: 12px 32px; font-size: 0.875rem; } .ds-ok strong { color: var(--color-band); font-weight: 600; }"
+    },
+    {
+      "name": "Statement Table",
+      "kind": "custom",
+      "refersTo": "sheet",
+      "description": "Signature: transactions bracketed by opening and closing balance rows with a running balance.",
+      "html": "<table class=\"ds-table\"><thead><tr><th>Date</th><th>Counterparty</th><th class=\"ds-r\">Amount</th><th class=\"ds-r\">Balance</th></tr></thead><tbody><tr class=\"ds-open\"><td>1 Oct</td><td><em>Opening balance</em></td><td></td><td class=\"ds-r\">€18,949.18</td></tr><tr><td class=\"ds-s\">1 Oct</td><td><b>Hausverwaltung Lindenhof</b><span>Miete Wohnung 3.OG links</span></td><td class=\"ds-r ds-debit\"><b>−€980.00</b></td><td class=\"ds-r ds-s\">€17,969.18</td></tr><tr class=\"ds-closing\"><td>22 Oct</td><td>Closing balance</td><td></td><td class=\"ds-r\">€17,241.56</td></tr></tbody></table>",
+      "css": ".ds-table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-ink); background: var(--color-sheet); font-variant-numeric: tabular-nums lining-nums; } .ds-table th { text-align: left; font-size: 0.875rem; font-weight: 500; color: var(--color-ink-soft); padding: 8px 16px; border-bottom: 1px solid var(--color-rule-strong); } .ds-table td { padding: 10px 16px; border-bottom: 1px solid var(--color-rule); vertical-align: top; } .ds-table td b { font-weight: 500; display: block; } .ds-table td span { display: block; font-size: 0.875rem; color: var(--color-ink-soft); } .ds-table tbody tr:hover { background: color-mix(in oklch, var(--color-ground) 60%, transparent); } .ds-r { text-align: right !important; white-space: nowrap; } .ds-s, .ds-open { color: var(--color-ink-soft); } .ds-debit { color: var(--color-debit); } .ds-closing td { border-top: 2px solid var(--color-ink); border-bottom: 0; font-weight: 600; padding: 12px 16px; }"
+    },
+    {
+      "name": "Mismatch Notice",
+      "kind": "custom",
+      "refersTo": "notice-warn",
+      "description": "Tint / rule / ink triad for figures that disagree with the bank; danger uses the same shape.",
+      "html": "<p class=\"ds-notice\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg><span><strong>Does not match the bank.</strong> The bank shows €17,241.56 on 22 Oct 2026.</span></p>",
+      "css": ".ds-notice { display: flex; align-items: flex-start; gap: 8px; margin: 0; padding: 12px 16px; border: 1px solid var(--color-warn-rule); border-radius: 3px; background: var(--color-warn-tint); color: var(--color-ink); font-family: var(--font-sans); font-size: 0.875rem; } .ds-notice svg { flex-shrink: 0; margin-top: 1px; color: var(--color-warn); } .ds-notice strong { color: var(--color-warn); font-weight: 600; }"
+    },
+    {
+      "name": "CSV Drop Zone",
+      "kind": "input",
+      "refersTo": "sheet",
+      "description": "Dashed ruled file target; turns statement blue on drag.",
+      "html": "<label class=\"ds-drop\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M12 12v6\"/><path d=\"m15 15-3-3-3 3\"/></svg><span class=\"ds-drop-t\">Drop a DKB CSV here or choose a file</span><span class=\"ds-drop-h\">CSV export · .csv</span><input type=\"file\" accept=\".csv\" style=\"position:absolute;width:1px;height:1px;opacity:0\"></label>",
+      "css": ".ds-drop { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 40px 24px; text-align: center; border: 1px dashed var(--color-rule-strong); border-radius: 3px; background: var(--color-sheet); color: var(--color-ink); font-family: var(--font-sans); cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-drop svg { color: var(--color-band); } .ds-drop:hover { border-color: var(--color-ink-soft); } .ds-drop:focus-within { outline: 2px solid var(--color-band); outline-offset: 2px; } .ds-drop-t { font-weight: 500; } .ds-drop-h { font-size: 0.875rem; color: var(--color-ink-soft); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Kontoauszug",
+    "overview": "**Creative North Star: \"The Kontoauszug\"**\n\nEvery surface is a bank statement printout: white sheets laid on a cool printout-grey desk, ruled in hairlines, set in blue-black ink. A deep statement-blue band runs across the top like the bank's letterhead and is the only saturated surface on the screen. The headline of any view is a figure, not a graphic; the month opens on the old balance, lists what moved, and closes on the new one, and the visual system exists to make those numbers read as exact and checkable.\n\nDensity is that of a printed statement: one column of sheets stacked with even gaps, tables ruled row by row, generous but not airy. Color carries meaning, never decoration. Blue means the bank's voice (band, selection, the reconciled mark, the primary action); red means money leaving; amber means the figures disagree. Everything else is ink and paper.\n\nMotion has one moment: when the month changes, the statement figures settle in with a short fade and a 4px rise. Nothing else animates beyond colour transitions on hover.",
+    "keyCharacteristics": [
+      "Cool grey ground, white hairline-ruled sheets, blue-black ink.",
+      "One deep statement-blue for the band, selection, focus, and primary action.",
+      "Fira Sans throughout with tabular lining figures; Fira Mono only for IBANs, references, and filenames.",
+      "Square-ish 3px corners; a single soft lift under sheets and nothing else.",
+      "Outgoing amounts in red ink with a true minus (U+2212); incoming in ink with a plus."
+    ],
+    "rules": [
+      {
+        "name": "The Bank's Voice Rule",
+        "body": "Statement Blue is the only saturated colour on a calm screen; it marks the band, the one primary action, and the reconciled state. Never use it as a decorative fill or for a second competing action.",
+        "section": "colors"
+      },
+      {
+        "name": "The Red Ink Rule",
+        "body": "Debit Red is for outgoing amounts. Errors use Error Red in its tint/rule/ink triad; amounts never use the tint.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Any element showing money or counts carries tabular lining numerals (the `figures` utility or a `table`). Amounts are right-aligned, signed with + or a true minus (U+2212), never a hyphen.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono for Identifiers Rule",
+        "body": "Fira Mono is for strings the bank issues (IBAN, references) and filenames. Amounts are never mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper Rule",
+        "body": "Surfaces separate by tone and hairline, not shadow. The sheet lift is the system's only shadow token; do not stack, enlarge, or animate it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do put every view's content on Statement White sheets (1px Hairline, 3px radius, sheet lift) over the Printout Grey ground.",
+      "Do set money and counts in tabular lining figures, right-aligned, with + for incoming and a true minus (U+2212) in Debit Red for outgoing.",
+      "Do close any statement-like total with a 2px ink rule, as the bracket and the table do.",
+      "Do keep Statement Blue for the band, the single primary action, links, focus, and the reconciled state.",
+      "Do write labels in sentence case at 0.875rem in Faded Ink.",
+      "Do use the tint / rule / ink triad (warn or danger) for notices, with a 16px Lucide icon leading.",
+      "Do reserve motion for the figures settling on month change, and switch it off under reduced motion."
+    ],
+    "donts": [
+      "Don't open a view on KPI tiles or a donut; the headline is the statement equation.",
+      "Don't add shadows beyond the sheet lift, and don't lift elements on hover.",
+      "Don't round corners past 3px or use pill shapes.",
+      "Don't set amounts in Fira Mono or use a hyphen-minus for negatives.",
+      "Don't use Debit Red for anything but outgoing amounts, or Statement Blue as decorative fill.",
+      "Don't load fonts, icons, or assets from a CDN; everything is self-hosted."
+    ]
+  }
+}
