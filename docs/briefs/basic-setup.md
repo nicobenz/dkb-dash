@@ -1,6 +1,6 @@
 # Shape brief: basic setup (import, database, dashboard)
 
-Status: proposed, awaiting confirmation. Planning only; no code written yet.
+Status: confirmed. Planning only; no code written yet.
 
 ## 1. Job and audience
 
@@ -81,17 +81,16 @@ Duplicate detection:
 Balance timeline:
 
 - Anchor each import's statement balance at its date and derive the daily balances backwards through booked transactions.
-- Pending rows (proposed): not stored, only counted in the preview. They change or vanish when booked and would break duplicate detection.
+- Pending rows: not stored, only counted in the preview. They change or vanish when booked and would break duplicate detection.
 
 Localization and accessibility:
 
 - **English-only UI for now.** Early-stage churn is easier to build and test in one language; German comes later via Paraglide. Strings stay inline in components until then (no message keys to maintain during churn), and the scaffold's Paraglide setup stays in place, unused, until German is added.
 - The CSV's German values (`Gebucht`, `Vorgemerkt`, `Eingang`, `Ausgang`) are stored as the bank wrote them and mapped to English labels in the UI.
-- Numbers and currency via `Intl` with `en-GB` (EUR); dates in en-GB style, e.g. 23 Oct 2026 (proposed).
+- Numbers and currency via `Intl` with `en-GB` (EUR); dates in en-GB style, e.g. 23 Oct 2026.
 - WCAG AA: the amount sign is never conveyed by colour alone (always `−`/`+`); the chart has a table or text equivalent.
 
-Open decisions (defaults proposed; the builder must not invent others):
+Decisions (confirmed):
 
-- Ship Dockerfile and `docker-compose.yml` (app + Postgres, migrations on start) as part of this setup? Proposed: yes.
-- Chart: hand-built SVG or a small OSS chart library. Proposed: hand-built SVG for one line chart.
-- Pending rows: count only (as above), or store and replace on booking?
+- Ship a Dockerfile and `docker-compose.yml` (app + Postgres, migrations run on start) as part of this setup.
+- Charts: use a chart library from the start, since charts grow in importance (trends, category breakdowns). Choice: **LayerChart** (MIT, Svelte-native, SVG on d3 scales, Tailwind-friendly, no runtime network calls). The builder pins an exact version compatible with Svelte 5 and themes it from the design tokens rather than shipping library defaults. Fallback if it fights Svelte 5 or SvelteKit 3: Apache ECharts (Apache-2.0, canvas).
