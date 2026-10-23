@@ -10,6 +10,8 @@ const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
+	// Vendored design skill and its working files.
+	{ ignores: ['.claude/', '.impeccable/'] },
 	js.configs.recommended,
 	ts.configs.recommended,
 	svelte.configs.recommended,

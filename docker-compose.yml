@@ -1,0 +1,31 @@
+# Run dkb-dash with its own Postgres: `docker compose up -d`, then open http://localhost:3000.
+# Change POSTGRES_PASSWORD (in both places) before exposing this beyond your own machine.
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgres://dkb:change-me@db:5432/dkb_dash
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dkb
+      POSTGRES_PASSWORD: change-me
+      POSTGRES_DB: dkb_dash
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U dkb -d dkb_dash']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db-data:

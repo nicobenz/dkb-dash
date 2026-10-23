@@ -1,0 +1,7 @@
+"Girokonto";"<Users IBAN>"
+
+"Kontostand vom 23.10.2026:";"123,45 €"
+""
+"Buchungsdatum";"Wertstellung";"Status";"Zahlungspflichtige*r";"Zahlungsempfänger*in";"Verwendungszweck";"Umsatztyp";"IBAN";"Betrag (€)";"Gläubiger-ID";"Mandatsreferenz";"Kundenreferenz"
+"23.10.26";"23.10.26";"Gebucht";"ISSUER <No name due to payment on card reader>";"<Payee name>";"VISA Debitkartenumsatz vom 22.10.2026 <This string means that was a payment at a card reader>";"Ausgang";"<Payee IBAN>";"-1,23";"";"";"<Payment reference>"
+"23.10.26";"23.10.26";"Gebucht";"Jane Doe";"<Payee name>";"<Verwendungszweck issued by payee";"Ausgang";"<Payee IBAN>";"-1,23";"<Payee ID>";"<Mandate reference>";"<Payment reference>"

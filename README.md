@@ -1,54 +1,56 @@
-# sv
+# dkb-dash
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A self-hosted dashboard for your DKB Girokonto. Import the CSV export from DKB online banking and see each month as a statement: opening balance, money in, money out and closing balance, reconciled to the cent against the balance the bank puts in the export.
 
-## Creating a project
+- **Your data stays with you.** The CSV is read on your server and stored in your own Postgres. No bank credentials, no aggregator, and no requests to anyone else.
+- **Safe re-imports.** Overlapping exports are fine: transactions already imported are recognised and skipped, and you see exactly what will change before anything is saved.
+- **Figures you can check.** Balances are derived from the bank's own "Kontostand" figure. When two imports don't add up, the dashboard says by how much instead of hiding it.
 
-If you're seeing this, you've probably already done this step. Congrats!
+dkb-dash is an independent open-source project and is not affiliated with DKB AG.
+
+## Run it with Docker
 
 ```sh
-# create a new project
-npx sv create my-app
+docker compose up -d
 ```
 
-To recreate this project with the same configuration:
+Then open http://localhost:3000 and import your first CSV export. Change the database password in `docker-compose.yml` before you expose the app beyond your own machine. dkb-dash has no login yet, so keep it on a private network.
+
+Behind a reverse proxy that terminates TLS, pass `X-Forwarded-Proto` (most proxies do this by default) so form submissions are accepted.
+
+## Getting the CSV
+
+1. Sign in to DKB online banking and open your Girokonto.
+2. Open the list of transactions and pick the period you want.
+3. Export the list as CSV and choose the file on the Import page.
+
+Only the current Girokonto export format is supported for now. Pending ("Vorgemerkt") transactions are shown in the import preview but not stored; they come in with a later export once the bank has booked them.
+
+## Development
+
+Requirements: Node 22 and a Postgres database.
 
 ```sh
-# recreate this project
-npx sv@1.1.1 create --template minimal --types ts --add prettier eslint vitest="usages:unit,component" playwright="demo:no" tailwindcss="plugins:typography,forms" ai-tools="ide:claude-code+delivery:plugin" paraglide="languageTags:en, de+demo:no" drizzle="database:postgresql+postgresql:postgres.js+docker:no" sveltekit-adapter="adapter:node" --install npm dkb-dash
-```
-
-## Adding features
-
-Add features to your project with `sv add`:
-
-```sh
-npx sv add
-```
-
-For example, to add Tailwind CSS:
-
-```sh
-npx sv add tailwindcss
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+cp .env.example .env    # point DATABASE_URL at your database
+npm install
+npm run db:migrate      # create the tables
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+| Command                                       | What it does                                                    |
+| --------------------------------------------- | --------------------------------------------------------------- |
+| `npm run check`                               | Type-check Svelte and TypeScript                                |
+| `npm run lint`                                | Prettier and ESLint                                             |
+| `npm run test:unit -- --run --project server` | Unit tests (CSV parser, money, ledger)                          |
+| `npm run test:e2e`                            | Playwright tests against a production build                     |
+| `npm run db:generate`                         | Create a migration after changing `src/lib/server/db/schema.ts` |
 
-To create a production version of your app:
+The UI is English-only for now. Every string lives in `messages/en.json` (Paraglide), so a German translation can be added later by adding `de` to `project.inlang/settings.json` and a `messages/de.json`.
 
-```sh
-npm run build
-```
+### Project layout
 
-You can preview the production build with `npm run preview`.
+- `src/lib/server/csv/dkb-giro.ts`: parser for the DKB Girokonto export
+- `src/lib/server/imports.ts`: preview drafts, duplicate detection and committing imports
+- `src/lib/ledger.ts`: balances derived from the bank's balance figures
+- `src/routes/`: dashboard (`/`) and import flow (`/import`)
+- `drizzle/`: SQL migrations, applied on start by `scripts/migrate.js`
