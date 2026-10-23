@@ -85,7 +85,7 @@ Balance timeline:
 
 Localization and accessibility:
 
-- **English-only UI for now.** Early-stage churn is easier to build and test in one language; German comes later via Paraglide. Strings stay inline in components until then (no message keys to maintain during churn), and the scaffold's Paraglide setup stays in place, unused, until German is added.
+- **English-only UI for now, with message keys from the start.** Every UI string lives in `messages/en.json` and is used through Paraglide's `m.*()` functions, so German can be added later as `messages/de.json` without touching components. The `de` locale is removed from `project.inlang/settings.json` until then.
 - The CSV's German values (`Gebucht`, `Vorgemerkt`, `Eingang`, `Ausgang`) are stored as the bank wrote them and mapped to English labels in the UI.
 - Numbers and currency via `Intl` with `en-GB` (EUR); dates in en-GB style, e.g. 23 Oct 2026.
 - WCAG AA: the amount sign is never conveyed by colour alone (always `−`/`+`); the chart has a table or text equivalent.
