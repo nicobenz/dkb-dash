@@ -55,5 +55,8 @@
 	"imports": {
 		"#lib": "./src/lib/index.js",
 		"#lib/*": "./src/lib/*"
+	},
+	"dependencies": {
+		"impeccable": "^4.7.0"
 	}
 }
