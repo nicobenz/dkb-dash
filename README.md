@@ -34,6 +34,12 @@ Behind a reverse proxy that terminates TLS, pass `X-Forwarded-Proto` (most proxi
 
 Only the current Girokonto export format is supported for now. Pending ("Vorgemerkt") transactions are shown in the import preview but not stored; they come in with a later export once the bank has booked them.
 
+## Using it
+
+**Importing.** Choose the CSV on the Import page. Before anything is saved, you see the new transactions, the ones already imported (these are skipped), pending ones (not stored) and any rows that couldn't be read. Then import or discard. A preview is kept for a day. A file for an IBAN that isn't there yet adds it as another account. The Import page also lists earlier imports with their period, how many transactions were added and skipped, and the bank balance.
+
+**The overview.** Each month is shown as a statement: opening balance, money in, money out and closing balance, marked as reconciled when it matches the bank's Kontostand. Below it are a daily balance chart and the month's transactions, sortable by date, counterparty or amount, with details such as purpose, counterparty IBAN and mandate reference. Step back and forward between months, and switch accounts in the header when you have more than one.
+
 ## Development
 
 Requirements: Node 22 and a Postgres database.
