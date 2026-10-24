@@ -26,6 +26,10 @@ export const shortDate = (iso: string) =>
 		asUtc(iso)
 	);
 
+/** 23 Oct this year, 23 Oct 2025 otherwise: for lists that cross years. */
+export const listDate = (iso: string) =>
+	iso.slice(0, 4) === String(new Date().getFullYear()) ? shortDate(iso) : date(iso);
+
 /** October 2026, from "2026-10" */
 export const monthName = (month: string, style: 'long' | 'short' = 'long') =>
 	new Intl.DateTimeFormat(intlLocale(), { month: style, year: 'numeric', timeZone: 'UTC' }).format(
@@ -39,3 +43,10 @@ export const timestamp = (value: Date | string) =>
 
 /** DE02 1203 0000 0000 2020 51 */
 export const iban = (value: string) => value.replace(/(.{4})(?=.)/g, '$1 ');
+
+/** 12 %, or 4.5 % below ten so small shares don't read as zero. */
+export const percent = (share: number) =>
+	new Intl.NumberFormat(intlLocale(), {
+		style: 'percent',
+		maximumFractionDigits: share < 0.1 ? 1 : 0
+	}).format(share);

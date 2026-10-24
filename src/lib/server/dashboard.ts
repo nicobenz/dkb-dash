@@ -2,6 +2,8 @@ import { and, asc, between, eq, sql } from 'drizzle-orm';
 import { db } from './db';
 import { account, importBatch, transaction } from './db/schema';
 import { buildLedger, dailyBalances, monthBounds, previousDay, shiftMonth } from '#lib/ledger.js';
+import { spendingByTag, tagsFor } from '#lib/tags.js';
+import { listTags } from './tags';
 
 export async function listAccounts() {
 	return db.select().from(account).orderBy(asc(account.id));
@@ -37,26 +39,36 @@ export async function getDashboard(accountId: number, requestedMonth: string | n
 	const month = requestedMonth && MONTH.test(requestedMonth) ? requestedMonth : latest;
 	const { first, last } = monthBounds(month);
 
-	const rows = await db
-		.select({
-			id: transaction.id,
-			bookingDate: transaction.bookingDate,
-			payer: transaction.payer,
-			payee: transaction.payee,
-			purpose: transaction.purpose,
-			type: transaction.type,
-			counterpartyIban: transaction.counterpartyIban,
-			amountCents: transaction.amountCents,
-			customerReference: transaction.customerReference,
-			mandateReference: transaction.mandateReference
-		})
-		.from(transaction)
-		.where(and(eq(transaction.accountId, accountId), between(transaction.bookingDate, first, last)))
-		.orderBy(asc(transaction.bookingDate), asc(transaction.id));
+	const [rows, tags] = await Promise.all([
+		db
+			.select({
+				id: transaction.id,
+				bookingDate: transaction.bookingDate,
+				payer: transaction.payer,
+				payee: transaction.payee,
+				purpose: transaction.purpose,
+				type: transaction.type,
+				counterpartyIban: transaction.counterpartyIban,
+				amountCents: transaction.amountCents,
+				customerReference: transaction.customerReference,
+				mandateReference: transaction.mandateReference,
+				creditorId: transaction.creditorId
+			})
+			.from(transaction)
+			.where(
+				and(eq(transaction.accountId, accountId), between(transaction.bookingDate, first, last))
+			)
+			.orderBy(asc(transaction.bookingDate), asc(transaction.id)),
+		listTags()
+	]);
 
 	const openingCents = ledger.balanceAt(previousDay(first));
 	let running = openingCents;
-	const transactions = rows.map((row) => ({ ...row, balanceCents: (running += row.amountCents) }));
+	const transactions = rows.map((row) => ({
+		...row,
+		balanceCents: (running += row.amountCents),
+		tags: tagsFor(tags, row)
+	}));
 
 	const inCents = rows.filter((r) => r.amountCents > 0).reduce((s, r) => s + r.amountCents, 0);
 	const outCents = rows.filter((r) => r.amountCents < 0).reduce((s, r) => s + r.amountCents, 0);
@@ -86,6 +98,8 @@ export async function getDashboard(accountId: number, requestedMonth: string | n
 		outCents,
 		closingCents: ledger.balanceAt(last),
 		transactions,
+		tagCount: tags.length,
+		spending: spendingByTag(tags, rows),
 		anchor: ledger.anchor,
 		evidence: evidence[0],
 		mismatches,

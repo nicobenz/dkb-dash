@@ -11,7 +11,9 @@ import {
 	uniqueIndex,
 	index
 } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
 import type { ParsedStatement } from '../csv/dkb-giro';
+import type { RuleField } from '../../tags';
 
 export const account = pgTable('account', {
 	id: serial('id').primaryKey(),
@@ -77,3 +79,29 @@ export const importDraft = pgTable('import_draft', {
 	createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 	parsed: jsonb('parsed').$type<ParsedStatement>().notNull()
 });
+
+/** A user-defined tag. A booking carries every tag that has a matching rule; nothing is stored per booking. */
+export const tag = pgTable(
+	'tag',
+	{
+		id: serial('id').primaryKey(),
+		name: text('name').notNull(),
+		createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow()
+	},
+	(t) => [uniqueIndex('tag_name_lower').on(sql`lower(${t.name})`)]
+);
+
+/** "<field> contains <text>", case-insensitive. A tag matches when any one of its rules does. */
+export const tagRule = pgTable(
+	'tag_rule',
+	{
+		id: serial('id').primaryKey(),
+		tagId: integer('tag_id')
+			.notNull()
+			.references(() => tag.id, { onDelete: 'cascade' }),
+		field: text('field').$type<RuleField>().notNull(),
+		text: text('text').notNull(),
+		position: integer('position').notNull()
+	},
+	(t) => [index('tag_rule_tag').on(t.tagId)]
+);

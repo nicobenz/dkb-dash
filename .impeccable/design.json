@@ -432,6 +432,14 @@
       "description": "Dashed ruled file target; turns statement blue on drag.",
       "html": "<label class=\"ds-drop\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M12 12v6\"/><path d=\"m15 15-3-3-3 3\"/></svg><span class=\"ds-drop-t\">Drop a DKB CSV here or choose a file</span><span class=\"ds-drop-h\">CSV export · .csv</span><input type=\"file\" accept=\".csv\" style=\"position:absolute;width:1px;height:1px;opacity:0\"></label>",
       "css": ".ds-drop { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 40px 24px; text-align: center; border: 1px dashed var(--color-rule-strong); border-radius: 3px; background: var(--color-sheet); color: var(--color-ink); font-family: var(--font-sans); cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-drop svg { color: var(--color-band); } .ds-drop:hover { border-color: var(--color-ink-soft); } .ds-drop:focus-within { outline: 2px solid var(--color-band); outline-offset: 2px; } .ds-drop-t { font-weight: 500; } .ds-drop-h { font-size: 0.875rem; color: var(--color-ink-soft); }"
+    },
+    {
+      "name": "Tag Chip",
+      "kind": "badge",
+      "refersTo": "tag-chip",
+      "description": "A tag a transaction carries, inline after the purpose text. Marked variant (Selection Wash) only for the tag being edited.",
+      "html": "<span class=\"ds-tag\">Groceries</span> <span class=\"ds-tag ds-tag-marked\">Subscriptions</span>",
+      "css": ".ds-tag { display: inline-flex; max-width: 16rem; border: 1px solid var(--color-rule); background: var(--color-ground); color: var(--color-ink); font-family: var(--font-sans); font-size: 0.875rem; line-height: 20px; padding: 0 6px; border-radius: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-tag-marked { background: var(--color-select); border-color: color-mix(in oklch, var(--color-band) 25%, transparent); }"
     }
   ],
   "narrative": {

@@ -5,6 +5,10 @@
 	import { SvelteSet } from 'svelte/reactivity';
 	import { m } from '#lib/paraglide/messages.js';
 	import { date, iban, money, shortDate } from '#lib/format.js';
+	import { resolve } from '$app/paths';
+	import { fieldLabel } from '#lib/tag-copy.js';
+	import type { Rule } from '#lib/tags.js';
+	import TagChip from './TagChip.svelte';
 
 	type Row = {
 		id: number;
@@ -18,6 +22,7 @@
 		balanceCents: number;
 		customerReference: string;
 		mandateReference: string;
+		tags: { id: number; name: string; rule: Rule }[];
 	};
 
 	let {
@@ -150,9 +155,19 @@
 							/>
 							<span class="min-w-0 flex-1">
 								<span class="block truncate font-medium">{counterparty(row)}</span>
-								<span class="block truncate text-sm text-ink-soft">
-									<span class="sm:hidden">{shortDate(row.bookingDate)} ·&nbsp;</span>{row.purpose ||
-										m.no_purpose()}
+								<span class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-ink-soft">
+									<span class="min-w-0 truncate">
+										<span class="sm:hidden">{shortDate(row.bookingDate)} ·&nbsp;</span
+										>{row.purpose || m.no_purpose()}
+									</span>
+									{#if row.tags.length > 0}
+										<span class="flex flex-wrap gap-1">
+											<span class="sr-only">{m.row_tags()}:</span>
+											{#each row.tags as tag (tag.id)}
+												<TagChip name={tag.name} />
+											{/each}
+										</span>
+									{/if}
 								</span>
 							</span>
 							<span class="sr-only">{expanded ? m.row_hide_details() : m.row_details()}</span>
@@ -188,6 +203,27 @@
 								<dd>
 									{incoming(row) ? m.type_incoming() : m.type_outgoing()} · {date(row.bookingDate)}
 								</dd>
+								{#if row.tags.length > 0}
+									<dt class="text-ink-soft">{m.detail_tags()}</dt>
+									<dd>
+										<ul class="grid gap-1.5">
+											{#each row.tags as tag (tag.id)}
+												<li class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+													<TagChip
+														name={tag.name}
+														href={resolve('/tags/[id]', { id: String(tag.id) })}
+													/>
+													<span class="text-ink-soft">
+														{m.detail_tag_reason({
+															field: fieldLabel(tag.rule.field),
+															text: tag.rule.text
+														})}
+													</span>
+												</li>
+											{/each}
+										</ul>
+									</dd>
+								{/if}
 								{#if row.counterpartyIban}
 									<dt class="text-ink-soft">{m.detail_iban()}</dt>
 									<dd class="font-mono break-all">{iban(row.counterpartyIban)}</dd>

@@ -11,6 +11,7 @@
 	import StatementBracket from '#lib/components/StatementBracket.svelte';
 	import BalanceChart from '#lib/components/BalanceChart.svelte';
 	import TransactionTable from '#lib/components/TransactionTable.svelte';
+	import TagSpending from '#lib/components/TagSpending.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -114,6 +115,8 @@
 		/>
 
 		<BalanceChart balances={d.balances} highlightFrom={d.first} highlightTo={closingDate} />
+
+		<TagSpending tagCount={d.tagCount} {...d.spending} />
 
 		<TransactionTable
 			rows={d.transactions}

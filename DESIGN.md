@@ -143,6 +143,14 @@ components:
     textColor: "{colors.danger}"
     rounded: "{rounded.sheet}"
     padding: "12px 16px"
+  tag-chip:
+    backgroundColor: "{colors.ground}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.sheet}"
+    padding: "0 6px"
+  tag-chip-marked:
+    backgroundColor: "{colors.select}"
+    textColor: "{colors.ink}"
 ---
 
 # Design System: dkb-dash
@@ -173,14 +181,14 @@ A near-monochrome blue-grey paper palette with one deep statement blue and red i
 - **Letterhead Navy** (band-deep): hover state of the primary button, active nav item and the account select inside the band.
 - **Band Paper** (band-ink): text on the band and on primary buttons.
 - **Band Grey-Blue** (band-soft): resting nav links and secondary labels inside the band (account kind).
-- **Selection Wash** (select): text selection, the reconciled notice strip (at 50%), the active drop zone and the chart's current-month span (at 60%).
+- **Selection Wash** (select): text selection, the reconciled notice strip (at 50%), the active drop zone, the chart's current-month span (at 60%) and the marked tag chip (the tag being edited, in the rule preview).
 
 ### Secondary
 - **Debit Red** (debit): outgoing amounts, the money-out figure and its minus operator. Used for amounts only.
 
 ### Tertiary
-- **Mismatch Amber** (warn, warn-tint, warn-rule): the "does not match the bank" strip and new-account notices. Tint is the fill, rule the 1px border, warn the icon and bold lead.
-- **Error Red** (danger, danger-tint, danger-rule): import failures and rejected-row counts. Same tint/rule/ink triad as amber.
+- **Mismatch Amber** (warn, warn-tint, warn-rule): the "does not match the bank" strip and new-account notices. Tint is the fill, rule the 1px border, warn the icon and bold lead. In the rule editor, warn alone (500 weight, no tint) marks a rule's match count that deserves a second look: "No match" or "Every transaction".
+- **Error Red** (danger, danger-tint, danger-rule): import and form failures, rejected-row counts, the invalid field's border, and the destructive delete action (a red text toggle opening a danger-tint confirmation with an outlined red button that fills on hover). Same tint/rule/ink triad as amber.
 
 ### Neutral
 - **Printout Grey** (ground): page background, file-name chips, row hover (at 60%) and expanded row detail (at 50%).
@@ -277,6 +285,24 @@ The month's headline is the statement equation: opening balance + money in − m
 ### Statement Table (signature)
 The transaction table repeats the bracket: in date-ascending order it opens on an italic Faded Ink "Opening balance" row and closes on a 600-weight "Closing balance" row under a 2px ink rule, with a running-balance column in Faded Ink. Rows are ruled in hairlines, hover to Printout Grey at 60%, and expand on click (chevron rotates 180°) into a Printout Grey detail grid of label/value pairs with identifiers in mono. Sorting by another key drops the bracket rows and the running balance, since they only hold in statement order.
 
+### Tag Chip
+A tag a transaction carries, printed like a small rubber stamp on the statement line.
+- **Shape:** 3px corners, 1px Hairline border, Printout Grey fill, ink text at Label size (0.875rem, 20px line), 6px horizontal padding, truncating past 16rem with the full name as a title.
+- **Marked:** Selection Wash fill with a Statement Blue border at 25%, only for the tag being edited in the rule preview.
+- **Placement:** inline after the purpose text on a transaction row; when the purpose is long it truncates and the chips wrap beneath. Chips carry no colour per tag; tags are told apart by name. In the expanded row detail each chip links to its tag and is followed by its reason in Faded Ink ("Counterparty contains “REWE”").
+
+### Rule Editor
+A sheet in three ruled bands: the name field, the rules, and the save action.
+- **Rules:** each rule is a hairline-ruled row reading as a sentence: field select, "contains" in Faded Ink, text input, its match count right-aligned in tabular figures, and a 32px remove button. A Label header row names the columns at sm and up; below sm a rule stacks field, "contains", text and count.
+- **Inputs:** Statement White, 1px Ruled Line border (Error Red when refused), 3px corners; focus turns the border Statement Blue with a 1px ring.
+- **Live preview:** a sheet below the editor in the statement-table style: exact count of all transactions, money in and out, then the newest 50 matches, each showing every tag it would carry. It updates 250ms after typing stops and dims to 60% while updating; nothing animates.
+
+### Spending by Tag
+The month's money out per tag, as a ruled itemisation sheet between the balance chart and the transactions.
+- One row per tag, sorted by amount: name, transaction count, a decorative 6px share bar (Faded Ink at 45% on a Printout Grey track) with the percentage of money out, and the amount in Debit Red. Below md the bar goes and the count and share move under the name.
+- **Untagged** sits apart under a Ruled Line, its label in Faded Ink.
+- **No closing rule.** Tags overlap, so the sheet never totals them and never takes the 2px ink rule; when a transaction carries several tags, a Faded Ink caption says so. The month's real money out stays in the statement bracket.
+
 ### Balance Chart
 A sheet containing a LayerChart step-after area: Statement Blue 1.75px line, the same blue at 8% fill, hairline horizontal grid only, Faded Ink 12px ticks with compact euro labels, and the current month shaded in Selection Wash at 60%. A visually hidden summary and monthly table stand in for it for assistive tech.
 
@@ -296,5 +322,6 @@ A sheet containing a LayerChart step-after area: Statement Blue 1.75px line, the
 - **Don't** add shadows beyond the sheet lift, and don't lift elements on hover.
 - **Don't** round corners past 3px or use pill shapes.
 - **Don't** set amounts in Fira Mono or use a hyphen-minus for negatives.
+- **Don't** draw the 2px ink rule under figures that don't add up, such as overlapping tags, or give tags their own colours.
 - **Don't** use Debit Red for anything but outgoing amounts, or Statement Blue as decorative fill.
 - **Don't** load fonts, icons, or assets from a CDN; everything is self-hosted.

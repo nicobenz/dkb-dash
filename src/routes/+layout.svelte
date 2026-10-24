@@ -16,7 +16,13 @@
 	let { data, children }: LayoutProps = $props();
 
 	const current = $derived(data.accounts.find((a) => a.id === data.currentAccountId));
-	const onImport = $derived(page.url.pathname.startsWith('/import'));
+	const section = $derived(
+		page.url.pathname.startsWith('/import')
+			? 'import'
+			: page.url.pathname.startsWith('/tags')
+				? 'tags'
+				: 'overview'
+	);
 </script>
 
 <svelte:head>
@@ -32,14 +38,21 @@
 			<nav aria-label={m.nav_label()} class="flex items-center gap-1 text-[0.95rem]">
 				<a
 					href={resolve('/')}
-					aria-current={onImport ? undefined : 'page'}
+					aria-current={section === 'overview' ? 'page' : undefined}
 					class="rounded-[3px] px-3 py-1.5 text-band-soft transition-colors hover:text-band-ink aria-[current=page]:bg-band-deep aria-[current=page]:text-band-ink"
 				>
 					{m.nav_overview()}
 				</a>
 				<a
+					href={resolve('/tags')}
+					aria-current={section === 'tags' ? 'page' : undefined}
+					class="rounded-[3px] px-3 py-1.5 text-band-soft transition-colors hover:text-band-ink aria-[current=page]:bg-band-deep aria-[current=page]:text-band-ink"
+				>
+					{m.nav_tags()}
+				</a>
+				<a
 					href={resolve('/import')}
-					aria-current={onImport ? 'page' : undefined}
+					aria-current={section === 'import' ? 'page' : undefined}
 					class="rounded-[3px] px-3 py-1.5 text-band-soft transition-colors hover:text-band-ink aria-[current=page]:bg-band-deep aria-[current=page]:text-band-ink"
 				>
 					{m.nav_import()}
