@@ -16,6 +16,14 @@ docker compose up -d
 
 Then open http://localhost:3000 and import your first CSV export. Change the database password in `docker-compose.yml` before you expose the app beyond your own machine. dkb-dash has no login yet, so keep it on a private network.
 
+To update, read the [release notes](https://github.com/nicobenz/dkb-dash/releases) first, then pull the new image and restart. Database migrations run when the container starts.
+
+```sh
+docker compose pull && docker compose up -d
+```
+
+Images are published for `linux/amd64` and `linux/arm64`. To build the image from source instead, run `docker build -t ghcr.io/nicobenz/dkb-dash:latest .` before `docker compose up -d`.
+
 Behind a reverse proxy that terminates TLS, pass `X-Forwarded-Proto` (most proxies do this by default) so form submissions are accepted.
 
 ## Getting the CSV
