@@ -9,5 +9,8 @@
 	},
 	"enabledPlugins": {
 		"svelte@svelte": true
+	},
+	"attribution": {
+		"pr": ""
 	}
 }

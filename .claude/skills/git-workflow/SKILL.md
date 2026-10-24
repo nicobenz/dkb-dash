@@ -108,7 +108,7 @@ Additive migrations (a new table or a nullable column) are not breaking.
 Mark it in two places:
 
 - **The title:** add `!` after the type, for example `feat!: 🗄️ stored amounts as integer cents`.
-- **The description:** add a `BREAKING CHANGE:` paragraph that tells the user what to do. Put it after the summary and before any attribution lines.
+- **The description:** add a `BREAKING CHANGE:` paragraph that tells the user what to do. Put it at the end of the description.
 
 ```
 BREAKING CHANGE: the migration rewrites every transaction row. Back up
@@ -127,7 +127,7 @@ Opening the PR is part of every task; you don't have to be asked. **Merging is n
 
 1. **Open it as a draft** right after the first push of the branch, with base `develop`. Never use `main` as the base.
 2. **Title:** the release-notes line, in the format above. GitHub uses it as the squash commit title, so keep it accurate as the work changes. A PR that started as a design review gets retitled for the feature once it is implemented.
-3. **Description:** this becomes the squash commit body. Write a short summary of what changed and how it was verified, plus the `BREAKING CHANGE:` paragraph if needed. Don't list the intermediate commits.
+3. **Description:** this becomes the squash commit body. Write a short summary of what changed and how it was verified, plus the `BREAKING CHANGE:` paragraph if needed. Don't list the intermediate commits, and don't add attribution lines ("Generated with Claude Code", session links).
 4. **Mark it ready for review** only when the implementation is complete and the repo's checks pass locally (`npm run lint`, `npm run check`, `npm run test:unit -- --run`). Design-only PRs stay drafts.
 5. **Keep it mergeable until the owner merges it:**
     - fix red CI
