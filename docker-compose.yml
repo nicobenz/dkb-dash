@@ -2,7 +2,8 @@
 # Change POSTGRES_PASSWORD (in both places) before exposing this beyond your own machine.
 services:
   app:
-    build: .
+    # `latest` is the newest release. Pin a minor version such as `0.1` to update on your own terms.
+    image: ghcr.io/nicobenz/dkb-dash:latest
     restart: unless-stopped
     ports:
       - '3000:3000'
