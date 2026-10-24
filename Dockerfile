@@ -13,6 +13,9 @@ RUN DATABASE_URL=postgres://build:build@localhost:5432/build npm run build \
 FROM node:22-alpine
 WORKDIR /app
 ENV NODE_ENV=production PORT=3000
+# Set by the release workflow; shown in the footer.
+ARG VERSION
+ENV DKB_DASH_VERSION=$VERSION
 COPY --from=build /app/package.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/build ./build

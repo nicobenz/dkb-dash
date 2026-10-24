@@ -8,6 +8,7 @@
 	"account_switch": "Switch account",
 	"footer_privacy": "Your data stays on this server. No requests leave it.",
 	"footer_affiliation": "Independent open-source project, not affiliated with DKB AG.",
+	"footer_version": "dkb-dash {version}",
 	"error_title": "Something went wrong",
 	"error_database_title": "The database can't be reached",
 	"error_database_body": "Check that Postgres is running and that DATABASE_URL points to it, then reload this page.",
