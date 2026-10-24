@@ -9,9 +9,10 @@ bun.lockb
 /static/
 /drizzle/
 
-# Vendored design skill and its working files
+# Vendored design skill and its working files; impeccable writes DESIGN.md itself
 .claude/
 .impeccable/
+DESIGN.md
 
 # Inlang manages its own files; only settings.json is ours
 /project.inlang/*
