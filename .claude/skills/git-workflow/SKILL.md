@@ -44,7 +44,8 @@ Impeccable briefs, critiques, audits and reviews are the first step of a change,
 
 How to handle them:
 
-- Never open a PR that contains only design artifacts. When a session ends with the review or brief written but the implementation still to do, commit and push to the feature branch, don't open a PR, and tell the user the branch name. The follow-up session continues on that branch instead of starting a new one from `develop`.
+- Never open a PR that contains only design artifacts. After writing a review or brief, commit and push it to the feature branch and stop there, even though that turn's task is done. The user usually asks for the implementation next in the same session, and it continues on the same branch.
+- If the user names an existing feature branch, for example to implement a review from another session, continue on that branch instead of starting a new one from `develop`.
 - When you continue on an existing feature branch, merge in the latest `origin/develop` first if it has moved.
 - The PR title describes the user-visible result, for example `feat(dashboard): show the balance trend for the last 12 months`, not the review that led to it.
 - Exception: design-system work the user asks for on its own, such as capturing or reworking `DESIGN.md` with no UI change, is a standalone `docs:` PR.
