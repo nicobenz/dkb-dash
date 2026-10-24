@@ -33,6 +33,22 @@ dkb-dash releases are cut automatically from Conventional Commits when `develop`
 
 One PR becomes one squash commit, which becomes one line in the release notes. Keep each PR to one user-visible change. If you notice an unrelated bug while building a feature, fix it in a separate branch and PR so it shows up as its own `fix:` line. Pure groundwork (a refactor, test or CI change) that a feature needs can stay in that feature's PR.
 
+### Design work (impeccable) ships with its implementation
+
+Impeccable briefs, critiques, audits and reviews are the first step of a change, not a change on their own. These files stay on the feature branch and land in the same PR as the code they lead to:
+
+- `docs/briefs/`
+- critique or audit notes
+- updates to `DESIGN.md`
+- `.impeccable/`
+
+How to handle them:
+
+- Never open a PR that contains only design artifacts. When a session ends with the review or brief written but the implementation still to do, commit and push to the feature branch, don't open a PR, and tell the user the branch name. The follow-up session continues on that branch instead of starting a new one from `develop`.
+- When you continue on an existing feature branch, merge in the latest `origin/develop` first if it has moved.
+- The PR title describes the user-visible result, for example `feat(dashboard): show the balance trend for the last 12 months`, not the review that led to it.
+- Exception: design-system work the user asks for on its own, such as capturing or reworking `DESIGN.md` with no UI change, is a standalone `docs:` PR.
+
 ## Commit messages
 
 Format:
