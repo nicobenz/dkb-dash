@@ -54,6 +54,7 @@ export type TagInputError =
 	| { code: 'name_long' }
 	| { code: 'name_taken' }
 	| { code: 'rule_empty'; index: number }
+	| { code: 'rule_long'; index: number }
 	| { code: 'rules_many' };
 
 /** Reads the editor's form: `name`, then repeated `field` / `text` pairs in rule order. */
@@ -72,8 +73,10 @@ export function validateTag(input: { name: string; rules: Rule[] }): TagInputErr
 	if (!input.name) return { code: 'name_empty' };
 	if (input.name.length > NAME_MAX) return { code: 'name_long' };
 	if (input.rules.length > RULES_MAX) return { code: 'rules_many' };
-	const blank = input.rules.findIndex((r) => !r.text || r.text.length > TEXT_MAX);
+	const blank = input.rules.findIndex((r) => !r.text);
 	if (blank >= 0) return { code: 'rule_empty', index: blank };
+	const long = input.rules.findIndex((r) => r.text.length > TEXT_MAX);
+	if (long >= 0) return { code: 'rule_long', index: long };
 }
 
 const isUniqueViolation = (e: unknown) =>

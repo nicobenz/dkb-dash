@@ -26,6 +26,10 @@ export const shortDate = (iso: string) =>
 		asUtc(iso)
 	);
 
+/** 23 Oct this year, 23 Oct 2025 otherwise: for lists that cross years. */
+export const listDate = (iso: string) =>
+	iso.slice(0, 4) === String(new Date().getFullYear()) ? shortDate(iso) : date(iso);
+
 /** October 2026, from "2026-10" */
 export const monthName = (month: string, style: 'long' | 'short' = 'long') =>
 	new Intl.DateTimeFormat(intlLocale(), { month: style, year: 'numeric', timeZone: 'UTC' }).format(

@@ -155,18 +155,20 @@
 							/>
 							<span class="min-w-0 flex-1">
 								<span class="block truncate font-medium">{counterparty(row)}</span>
-								<span class="block truncate text-sm text-ink-soft">
-									<span class="sm:hidden">{shortDate(row.bookingDate)} ·&nbsp;</span>{row.purpose ||
-										m.no_purpose()}
-								</span>
-								{#if row.tags.length > 0}
-									<span class="mt-1 flex flex-wrap gap-1">
-										<span class="sr-only">{m.row_tags()}:</span>
-										{#each row.tags as tag (tag.id)}
-											<TagChip name={tag.name} />
-										{/each}
+								<span class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-ink-soft">
+									<span class="min-w-0 truncate">
+										<span class="sm:hidden">{shortDate(row.bookingDate)} ·&nbsp;</span
+										>{row.purpose || m.no_purpose()}
 									</span>
-								{/if}
+									{#if row.tags.length > 0}
+										<span class="flex flex-wrap gap-1">
+											<span class="sr-only">{m.row_tags()}:</span>
+											{#each row.tags as tag (tag.id)}
+												<TagChip name={tag.name} />
+											{/each}
+										</span>
+									{/if}
+								</span>
 							</span>
 							<span class="sr-only">{expanded ? m.row_hide_details() : m.row_details()}</span>
 						</button>

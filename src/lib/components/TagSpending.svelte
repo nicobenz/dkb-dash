@@ -87,7 +87,7 @@
 							</span>
 						</th>
 						<td class="hidden py-2.5 pl-4 text-right whitespace-nowrap text-ink-soft sm:table-cell">
-							{transactionCount(tag.count)}
+							{tag.count}
 						</td>
 						{@render shareCell(tag.outCents)}
 						<td
@@ -106,7 +106,7 @@
 							</span>
 						</th>
 						<td class="hidden py-2.5 pl-4 text-right whitespace-nowrap sm:table-cell">
-							{transactionCount(untagged.count)}
+							{untagged.count}
 						</td>
 						{@render shareCell(untagged.outCents)}
 						<td

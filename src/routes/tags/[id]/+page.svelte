@@ -12,6 +12,12 @@
 
 	const tag = $derived(data.tag);
 	let confirming = $state<HTMLDetailsElement>();
+	let deleteToggle = $state<HTMLElement>();
+
+	function keep() {
+		if (confirming) confirming.open = false;
+		deleteToggle?.focus();
+	}
 </script>
 
 <svelte:head>
@@ -61,6 +67,7 @@
 
 		<details bind:this={confirming} class="group">
 			<summary
+				bind:this={deleteToggle}
 				class="inline-flex cursor-pointer list-none items-center gap-1.5 rounded-[3px] py-1.5 text-sm font-medium text-danger transition-colors hover:underline [&::-webkit-details-marker]:hidden"
 			>
 				<Trash2 class="size-4" aria-hidden="true" />
@@ -86,7 +93,7 @@
 					</button>
 					<button
 						type="button"
-						onclick={() => confirming && (confirming.open = false)}
+						onclick={keep}
 						class="rounded-[3px] border border-rule-strong bg-sheet px-4 py-2 font-medium transition-colors hover:border-ink-soft"
 					>
 						{m.tag_delete_keep()}

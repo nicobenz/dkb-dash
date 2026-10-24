@@ -4,7 +4,7 @@
 	import Plus from '@lucide/svelte/icons/plus';
 	import X from '@lucide/svelte/icons/x';
 	import { m } from '#lib/paraglide/messages.js';
-	import { money, shortDate } from '#lib/format.js';
+	import { listDate, money } from '#lib/format.js';
 	import { RULE_FIELDS, incoming, type Rule, type RuleField } from '#lib/tags.js';
 	import { fieldLabel, ruleMatchCount, tagErrorMessage } from '#lib/tag-copy.js';
 	import type { RulePreview, TagInputError } from '#lib/server/tags.js';
@@ -49,6 +49,13 @@
 	// svelte-ignore state_referenced_locally
 	let preview = $state(serverPreview);
 	let previewState = $state<'idle' | 'loading' | 'failed'>('idle');
+	/** Match counts by rule key, so removing a rule never shows its neighbour's count. */
+	// svelte-ignore state_referenced_locally
+	let counts = $state(countsFor(rules, preview));
+
+	function countsFor(list: DraftRule[], result: RulePreview | null) {
+		return new Map(result ? list.map((r, i) => [r.key, result.ruleCounts[i]]) : []);
+	}
 
 	const plainRules = $derived(rules.map(({ field, text }) => ({ field, text })));
 	const rulesKey = $derived(JSON.stringify(plainRules));
@@ -71,6 +78,7 @@
 			return;
 		}
 		previewState = 'loading';
+		const sent = rules.slice();
 		const timer = setTimeout(async () => {
 			try {
 				const res = await fetch('/tags/preview', {
@@ -82,6 +90,7 @@
 				const next = (await res.json()) as RulePreview;
 				if (mine !== sequence) return;
 				preview = next;
+				counts = countsFor(sent, next);
 				shownKey = key;
 				previewState = 'idle';
 			} catch {
@@ -89,6 +98,18 @@
 			}
 		}, 250);
 		return () => clearTimeout(timer);
+	});
+
+	// After a refused save, put the cursor where the problem is.
+	$effect(() => {
+		if (!error) return;
+		const target =
+			error.code === 'rule_empty' || error.code === 'rule_long'
+				? `#rule-text-${rules[error.index]?.key}`
+				: error.code === 'rules_many'
+					? null
+					: '#tag-name';
+		if (target) document.querySelector<HTMLInputElement>(target)?.focus();
 	});
 
 	function addRule() {
@@ -105,19 +126,16 @@
 	const counterparty = (row: RulePreview['rows'][number]) =>
 		(incoming(row) ? row.payer : row.payee) || m.unknown_counterparty();
 
-	const matchTone = (index: number) => {
-		if (!preview || preview.total === 0 || previewState === 'loading') return 'text-ink-soft';
-		const count = preview.ruleCounts[index];
-		if (count === undefined) return 'text-ink-soft';
-		return count === 0 || (count === preview.total && preview.total > 1)
-			? 'text-warn font-medium'
-			: 'text-ink-soft';
+	/** Too narrow (nothing) or too wide (everything): both deserve a second look. */
+	const suspicious = (rule: DraftRule) => {
+		const count = counts.get(rule.key);
+		if (!preview || count === undefined) return false;
+		return count === 0 || (count === preview.total && preview.total > 1);
 	};
 
-	const matchText = (index: number) => {
-		const count = preview?.ruleCounts[index];
-		if (!preview || preview.total === 0 || count === undefined || !rules[index]?.text.trim())
-			return '';
+	const matchText = (rule: DraftRule) => {
+		const count = counts.get(rule.key);
+		if (!preview || preview.total === 0 || count === undefined || !rule.text.trim()) return '';
 		if (count === preview.total && preview.total > 1) return m.rule_matches_all();
 		return ruleMatchCount(count);
 	};
@@ -198,7 +216,8 @@
 
 		<ol class="mt-3 sm:mt-0">
 			{#each rules as rule, i (rule.key)}
-				{@const invalid = error?.code === 'rule_empty' && error.index === i}
+				{@const invalid =
+					(error?.code === 'rule_empty' || error?.code === 'rule_long') && error.index === i}
 				<li
 					class="grid grid-cols-[minmax(0,1fr)_2rem] items-center gap-x-3 gap-y-2 border-b border-rule px-5 py-3 sm:grid-cols-[11rem_auto_minmax(0,1fr)_9rem_2rem] sm:px-6 sm:py-2.5"
 				>
@@ -235,11 +254,13 @@
 					/>
 					<span
 						id="rule-count-{rule.key}"
-						class="figures col-start-1 row-start-4 text-sm sm:col-start-auto sm:row-start-auto sm:text-right {matchTone(
-							i
-						)}"
+						class="figures col-start-1 row-start-4 text-sm transition-opacity sm:col-start-auto sm:row-start-auto sm:text-right {suspicious(
+							rule
+						)
+							? 'font-medium text-warn'
+							: 'text-ink-soft'} {previewState === 'loading' ? 'opacity-50' : ''}"
 					>
-						{matchText(i)}
+						{matchText(rule)}
 					</span>
 					<button
 						type="button"
@@ -346,20 +367,22 @@
 					{#each preview.rows as row (row.id)}
 						<tr class="border-b border-rule align-top last:border-0">
 							<td class="hidden py-2.5 pl-6 whitespace-nowrap text-ink-soft sm:table-cell">
-								{shortDate(row.bookingDate)}
+								{listDate(row.bookingDate)}
 							</td>
 							<td class="max-w-0 py-2.5 pl-5 sm:pl-4">
 								<span class="block truncate font-medium">{counterparty(row)}</span>
-								<span class="block truncate text-sm text-ink-soft">
-									<span class="sm:hidden">{shortDate(row.bookingDate)} ·&nbsp;</span>{row.purpose ||
-										m.no_purpose()}
-								</span>
-								<span class="mt-1 flex flex-wrap gap-1">
-									<span class="sr-only">{m.row_tags()}:</span>
-									<TagChip name={name.trim() || m.tag_new_title()} marked />
-									{#each row.otherTags as other (other.id)}
-										<TagChip name={other.name} />
-									{/each}
+								<span class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-ink-soft">
+									<span class="min-w-0 truncate">
+										<span class="sm:hidden">{listDate(row.bookingDate)} ·&nbsp;</span
+										>{row.purpose || m.no_purpose()}
+									</span>
+									<span class="flex flex-wrap gap-1">
+										<span class="sr-only">{m.row_tags()}:</span>
+										<TagChip name={name.trim() || m.tag_new_title()} marked />
+										{#each row.otherTags as other (other.id)}
+											<TagChip name={other.name} />
+										{/each}
+									</span>
 								</span>
 							</td>
 							<td

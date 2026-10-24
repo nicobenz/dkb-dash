@@ -197,5 +197,7 @@
 	"rule_col_text": "Text",
 	"rule_col_matches": "Matches",
 	"tag_delete_keep": "Keep tag",
-	"col_share": "Share of money out"
+	"col_share": "Share of money out",
+	"tag_error_rule_long": "Rule {n} is longer than 200 characters. Shorten it to the part that identifies the transaction.",
+	"col_transactions_all": "Transactions, all time"
 }

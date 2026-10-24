@@ -36,5 +36,7 @@ export function tagErrorMessage(error: TagInputError) {
 			return m.tag_error_rules_many();
 		case 'rule_empty':
 			return m.tag_error_rule_empty({ n: error.index + 1 });
+		case 'rule_long':
+			return m.tag_error_rule_long({ n: error.index + 1 });
 	}
 }

@@ -4,7 +4,7 @@
 	import Plus from '@lucide/svelte/icons/plus';
 	import { m } from '#lib/paraglide/messages.js';
 	import { money, monthName } from '#lib/format.js';
-	import { ruleCount } from '#lib/tag-copy.js';
+	import { ruleCount, transactionCount } from '#lib/tag-copy.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -46,17 +46,19 @@
 	<section class="mt-8 sheet" aria-label={m.tags_title()}>
 		<table class="w-full border-collapse text-[0.95rem]">
 			<thead>
-				<tr class="border-b border-rule-strong text-left text-sm text-ink-soft">
-					<th scope="col" class="py-2 pl-5 font-medium sm:pl-6">{m.col_tag()}</th>
-					<th scope="col" class="hidden py-2 pl-4 font-medium sm:table-cell">{m.col_rules()}</th>
-					<th scope="col" class="py-2 pr-5 pl-4 text-right font-medium sm:pr-6 md:pr-4">
-						{m.col_transactions()}
+				<tr class="border-b border-rule-strong text-left align-bottom text-sm text-ink-soft">
+					<th scope="col" class="w-full py-2 pl-5 font-medium sm:pl-6">{m.col_tag()}</th>
+					<th scope="col" class="hidden py-2 pl-4 font-medium whitespace-nowrap sm:table-cell">
+						{m.col_rules()}
+					</th>
+					<th
+						scope="col"
+						class="hidden py-2 pl-6 text-right font-medium whitespace-nowrap sm:table-cell"
+					>
+						{m.col_transactions_all()}
 					</th>
 					{#if overview.month}
-						<th
-							scope="col"
-							class="hidden py-2 pr-6 pl-4 text-right font-medium whitespace-nowrap md:table-cell"
-						>
+						<th scope="col" class="py-2 pr-5 pl-4 text-right font-medium sm:pr-6 sm:pl-6">
 							{m.col_month_out({ month: monthName(overview.month, 'short') })}
 						</th>
 					{/if}
@@ -64,6 +66,7 @@
 			</thead>
 			<tbody>
 				{#each overview.tags as tag (tag.id)}
+					{@const rules = tag.ruleCount === 0 ? m.tags_no_rules() : ruleCount(tag.ruleCount)}
 					<tr class="border-b border-rule transition-colors last:border-0 hover:bg-ground/60">
 						<td class="max-w-0 py-2.5 pl-5 sm:pl-6">
 							<a
@@ -73,18 +76,18 @@
 								{tag.name}
 							</a>
 							<span class="block text-sm text-ink-soft sm:hidden">
-								{tag.ruleCount === 0 ? m.tags_no_rules() : ruleCount(tag.ruleCount)}
+								{rules} · {transactionCount(tag.count)}
 							</span>
 						</td>
 						<td class="hidden py-2.5 pl-4 whitespace-nowrap text-ink-soft sm:table-cell">
-							{tag.ruleCount === 0 ? m.tags_no_rules() : ruleCount(tag.ruleCount)}
+							{rules}
 						</td>
-						<td class="py-2.5 pr-5 pl-4 text-right whitespace-nowrap sm:pr-6 md:pr-4"
-							>{tag.count}</td
-						>
+						<td class="hidden py-2.5 pl-6 text-right whitespace-nowrap sm:table-cell">
+							{tag.count}
+						</td>
 						{#if overview.month}
 							<td
-								class="hidden py-2.5 pr-6 pl-4 text-right font-medium whitespace-nowrap md:table-cell {tag.monthOutCents <
+								class="py-2.5 pr-5 pl-4 text-right font-medium whitespace-nowrap sm:pr-6 sm:pl-6 {tag.monthOutCents <
 								0
 									? 'text-debit'
 									: 'text-ink-soft'}"
