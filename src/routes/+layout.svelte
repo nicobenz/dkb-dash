@@ -84,6 +84,16 @@
 		>
 			<p>{m.footer_privacy()}</p>
 			<p>{m.footer_affiliation()}</p>
+			{#if data.version}
+				<p class="sm:ml-auto">
+					<a
+						href="https://github.com/nicobenz/dkb-dash/releases/tag/v{data.version}"
+						class="underline-offset-2 hover:underline"
+					>
+						{m.footer_version({ version: data.version })}
+					</a>
+				</p>
+			{/if}
 		</div>
 	</footer>
 </div>
