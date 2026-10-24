@@ -22,7 +22,19 @@ To update, read the [release notes](https://github.com/nicobenz/dkb-dash/release
 docker compose pull && docker compose up -d
 ```
 
-Images are published for `linux/amd64` and `linux/arm64`. To build the image from source instead, run `docker build -t ghcr.io/nicobenz/dkb-dash:latest .` before `docker compose up -d`.
+### Docker images
+
+Every release publishes `ghcr.io/nicobenz/dkb-dash` for `linux/amd64` and `linux/arm64`, so it also runs on a Raspberry Pi or most NAS devices. Each image has three tags:
+
+| Tag      | Points to                                           |
+| -------- | --------------------------------------------------- |
+| `0.1.0`  | exactly that release, and never changes             |
+| `0.1`    | the newest release of 0.1                           |
+| `latest` | the newest release, which `docker-compose.yml` uses |
+
+To update on your own terms, pin a version in `docker-compose.yml`, for example `image: ghcr.io/nicobenz/dkb-dash:0.1`. While dkb-dash is on 0.x, a new minor version (0.2, 0.3, ...) can include changes you have to act on; the release notes list them under "Breaking changes". The running version is shown in the footer.
+
+To build the image from source instead, run `docker build -t ghcr.io/nicobenz/dkb-dash:latest .` before `docker compose up -d`.
 
 Behind a reverse proxy that terminates TLS, pass `X-Forwarded-Proto` (most proxies do this by default) so form submissions are accepted.
 
