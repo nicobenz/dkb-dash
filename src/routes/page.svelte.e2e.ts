@@ -27,3 +27,30 @@ test('explains why a file was rejected', async ({ page }) => {
 	await page.getByRole('button', { name: 'Read file' }).click();
 	await expect(page.getByRole('alert')).toContainText('Missing columns');
 });
+
+test('creates, saves and deletes a tag', async ({ page }) => {
+	const name = `Groceries ${Date.now()}`;
+	await page.goto('/tags/new', { waitUntil: 'networkidle' });
+	await page.getByLabel('Name').fill(name);
+	await page.getByLabel('Field for rule 1').selectOption('counterparty');
+	await page.getByLabel('Text for rule 1').fill('REWE');
+	await page.getByRole('button', { name: 'Add rule' }).click();
+	await page.getByLabel('Text for rule 2').fill('Lidl');
+	await page.getByRole('button', { name: 'Create tag' }).click();
+
+	await expect(page.getByRole('heading', { level: 1, name })).toBeVisible();
+	await expect(page.getByRole('status')).toContainText('Saved');
+	await expect(page.getByLabel('Text for rule 2')).toHaveValue('Lidl');
+
+	await page.getByText('Delete tag').click();
+	await page.getByRole('button', { name: `Delete ${name}` }).click();
+	await expect(page).toHaveURL(/\/tags\?deleted=/);
+	await expect(page.getByRole('status')).toContainText(name);
+});
+
+test('refuses a rule without text', async ({ page }) => {
+	await page.goto('/tags/new', { waitUntil: 'networkidle' });
+	await page.getByLabel('Name').fill(`Empty ${Date.now()}`);
+	await page.getByRole('button', { name: 'Create tag' }).click();
+	await expect(page.getByRole('alert')).toContainText('Rule 1 has no text');
+});

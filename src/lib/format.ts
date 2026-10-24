@@ -39,3 +39,10 @@ export const timestamp = (value: Date | string) =>
 
 /** DE02 1203 0000 0000 2020 51 */
 export const iban = (value: string) => value.replace(/(.{4})(?=.)/g, '$1 ');
+
+/** 12 %, or 4.5 % below ten so small shares don't read as zero. */
+export const percent = (share: number) =>
+	new Intl.NumberFormat(intlLocale(), {
+		style: 'percent',
+		maximumFractionDigits: share < 0.1 ? 1 : 0
+	}).format(share);
