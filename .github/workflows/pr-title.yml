@@ -1,0 +1,18 @@
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  title:
+    name: PR title follows the release-notes format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: node .github/scripts/check-pr-title.mjs
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}

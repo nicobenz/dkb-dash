@@ -1,3 +1,82 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@source '../../node_modules/layerchart/dist';
+
+/*
+ * Statement world: a cool printout-grey ground, white sheets ruled in hairlines,
+ * blue-black ink, and one deep statement blue for the shell band and selection.
+ */
+@theme {
+	--font-sans: 'Fira Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'Fira Mono', ui-monospace, monospace;
+
+	--color-ground: oklch(0.955 0.007 250);
+	--color-sheet: oklch(0.995 0.002 250);
+	--color-ink: oklch(0.25 0.035 262);
+	--color-ink-soft: oklch(0.47 0.03 262);
+	--color-rule: oklch(0.89 0.01 255);
+	--color-rule-strong: oklch(0.76 0.018 258);
+	--color-band: oklch(0.36 0.1 260);
+	--color-band-deep: oklch(0.3 0.09 261);
+	--color-band-ink: oklch(0.97 0.012 255);
+	--color-band-soft: oklch(0.83 0.04 258);
+	--color-select: oklch(0.93 0.035 258);
+	--color-debit: oklch(0.5 0.17 27);
+	--color-warn: oklch(0.5 0.12 65);
+	--color-warn-tint: oklch(0.965 0.035 85);
+	--color-warn-rule: oklch(0.8 0.1 80);
+	--color-danger: oklch(0.5 0.19 27);
+	--color-danger-tint: oklch(0.965 0.02 25);
+	--color-danger-rule: oklch(0.8 0.08 25);
+
+	/* LayerChart reads these. */
+	--color-primary: var(--color-band);
+	--color-surface-100: var(--color-sheet);
+	--color-surface-200: var(--color-ground);
+	--color-surface-300: var(--color-rule);
+	--color-surface-content: var(--color-ink);
+
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+	html {
+		background: var(--color-ground);
+		color: var(--color-ink);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+		scrollbar-color: var(--color-rule-strong) var(--color-ground);
+		accent-color: var(--color-band);
+		caret-color: var(--color-band);
+	}
+
+	::selection {
+		background: var(--color-select);
+		color: var(--color-ink);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-band);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+
+	a {
+		text-underline-offset: 0.2em;
+		text-decoration-thickness: 1px;
+	}
+
+	table,
+	.figures {
+		font-variant-numeric: tabular-nums lining-nums;
+	}
+}
+
+@utility sheet {
+	background: var(--color-sheet);
+	border: 1px solid var(--color-rule);
+	border-radius: 3px;
+	box-shadow: 0 1px 2px oklch(0.3 0.04 260 / 0.06);
+}
